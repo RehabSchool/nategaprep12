@@ -1,0 +1,874 @@
+
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#13245C" />
+<title>نتيجة مدرسة الرحاب الخاصة</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+  direction: rtl;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #cce0f0, #f5f7fb);
+  min-height: 100vh;
+  color: #26364b;
+}
+
+.container {
+  width: 100%;
+  max-width: 850px;
+  margin: 55px auto 25px;
+  padding: 15px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 25px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+  padding: 40px 30px 30px;
+  position: relative;
+}
+
+.page-title {
+  text-align: center;
+  font-size: 28px;
+  color: #13245C;
+  margin: 0 0 35px;
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+.logo-container {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 3px solid #13245C;
+  position: absolute;
+  top: -40px;
+  left: 30px;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.logo-container img {
+  width: 65px;
+  height: 65px;
+  object-fit: contain;
+}
+
+/* منطقة البحث */
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.input-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 450px;
+}
+
+label.small {
+  font-size: 16px;
+  color: #555;
+  font-weight: 600;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 13px;
+  font-size: 17px;
+  border-radius: 12px;
+  border: 1px solid #b0c7d8;
+  text-align: center;
+  direction: ltr;
+  transition: all 0.3s ease;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: #0b79a6;
+  box-shadow: 0 0 10px rgba(11,121,166,0.2);
+}
+
+button {
+  width: 100%;
+  max-width: 450px;
+  padding: 15px;
+  font-size: 17px;
+  border-radius: 12px;
+  border: none;
+  background: #13245C;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background: #095b7c;
+  transform: translateY(-2px);
+}
+
+button:disabled {
+  opacity: 0.65;
+  cursor: wait;
+  transform: none;
+}
+
+/* منطقة النتيجة */
+
+.result {
+  margin-top: 25px;
+  width: 100%;
+}
+
+/* بيانات الطالب */
+
+.info-title {
+  color: #13245C;
+  font-size: 20px;
+  font-weight: 800;
+  margin: 0 0 15px;
+  padding-right: 10px;
+  border-right: 4px solid #13245C;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.info-item {
+  background: #E8F0FA;
+  border: 1px solid #d9e5f2;
+  border-radius: 12px;
+  padding: 12px 10px;
+  min-width: 0;
+  text-align: center;
+}
+
+.info-item.name-item {
+  grid-column: span 2;
+}
+
+.info-item.nid-item {
+  grid-column: span 1;
+}
+
+.info-label {
+  display: block;
+  color: #52647D;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 7px;
+}
+
+.info-value {
+  display: block;
+  color: #13245C;
+  font-size: 16px;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+  line-height: 1.5;
+}
+
+/* جدول الدرجات */
+
+.grades-title {
+  color: #13245C;
+  font-size: 20px;
+  font-weight: 800;
+  margin: 0 0 12px;
+  padding-right: 10px;
+  border-right: 4px solid #13245C;
+}
+
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid #e6eef5;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 17px;
+  margin: 0;
+}
+
+th, td {
+  padding: 13px 12px;
+  border: 1px solid #e6eef5;
+  text-align: center;
+}
+
+th {
+  background: #13245C;
+  color: white;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+tbody tr:nth-child(even) {
+  background: #f0f9fc;
+}
+
+tbody tr:hover {
+  background: #d6edf8;
+  transition: background 0.2s;
+}
+
+td.grade {
+  font-weight: 700;
+  font-size: 19px;
+  color: #13245C;
+}
+
+/* صف المجموع المميز */
+
+.total-row td {
+  background: #E8F0FA !important;
+  color: #13245C !important;
+  font-weight: 800;
+  border-top: 2px solid #13245C;
+  border-bottom: 2px solid #13245C;
+}
+
+.total-row td:first-child {
+  background: #13245C !important;
+  color: #fff !important;
+  font-size: 18px;
+}
+
+.total-row td:last-child {
+  font-size: 25px;
+  color: #13245C !important;
+}
+
+.total-row:hover td {
+  background: #DCE8F6 !important;
+}
+
+.total-row:hover td:first-child {
+  background: #13245C !important;
+}
+
+/* رسائل الخطأ */
+
+.error {
+  color: #b00020;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 15px;
+  padding: 15px;
+  background: #fff0f1;
+  border-radius: 10px;
+  border: 1px solid #f2c5ca;
+}
+
+.loading {
+  text-align: center;
+  color: #13245C;
+  font-weight: 600;
+  padding: 15px;
+}
+
+/* تحسين الموبايل */
+
+@media (max-width: 580px) {
+
+  .container {
+    margin: 45px auto 15px;
+    padding: 10px;
+  }
+
+  .card {
+    padding: 38px 14px 20px;
+    border-radius: 18px;
+  }
+
+  .page-title {
+    font-size: 21px;
+    margin-bottom: 28px;
+    padding: 0 5px;
+  }
+
+  .logo-container {
+    width: 65px;
+    height: 65px;
+    top: -33px;
+    left: 15px;
+  }
+
+  .logo-container img {
+    width: 53px;
+    height: 53px;
+  }
+
+  .input-row {
+    max-width: 100%;
+  }
+
+  label.small {
+    font-size: 15px;
+  }
+
+  input[type="text"] {
+    font-size: 16px;
+    padding: 12px;
+  }
+
+  button {
+    max-width: 100%;
+    padding: 13px;
+  }
+
+  .info-title,
+  .grades-title {
+    font-size: 18px;
+  }
+
+  /* بيانات الطالب في عمودين على الموبايل */
+
+  .info-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .info-item {
+    padding: 11px 7px;
+  }
+
+  .info-item.name-item,
+  .info-item.nid-item {
+    grid-column: span 2;
+  }
+
+  .info-label {
+    font-size: 12px;
+  }
+
+  .info-value {
+    font-size: 14px;
+  }
+
+  /* جدول الدرجات */
+
+  table {
+    font-size: 15px;
+  }
+
+  th, td {
+    padding: 11px 7px;
+  }
+
+  th {
+    font-size: 15px;
+  }
+
+  td.grade {
+    font-size: 17px;
+  }
+
+  .total-row td:first-child {
+    font-size: 16px;
+  }
+
+  .total-row td:last-child {
+    font-size: 22px;
+  }
+}
+
+/* الشاشات الصغيرة جداً */
+
+@media (max-width: 350px) {
+
+  .page-title {
+    font-size: 19px;
+  }
+
+  .card {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .info-value {
+    font-size: 13px;
+  }
+
+  th, td {
+    padding: 9px 5px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <div class="card">
+
+    <h1 class="page-title">نتيجة طلاب مدرسة الرحاب الخاصة</h1>
+
+    <div class="logo-container">
+      <img src="./img/logo.jpeg" alt="لوغو مدرسة الرحاب">
+    </div>
+
+    <div class="controls">
+
+      <div class="input-row">
+        <label for="nid" class="small">
+          اكتب الرقم القومي للطالب:
+        </label>
+
+        <input
+          id="nid"
+          type="text"
+          placeholder="أدخل الرقم القومي"
+          inputmode="numeric"
+          autocomplete="off"
+        />
+      </div>
+
+      <button id="searchBtn">عرض النتيجة</button>
+
+    </div>
+
+    <div id="result" class="result" aria-live="polite"></div>
+
+  </div>
+</div>
+
+<script>
+
+// رابط بيانات Google Sheets
+const SHEET_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQXwio5JrXRJY-uUIxdmDNvYAXZ1Puwc4Bzn0lkQLAe8TboGUiYFw1K_b-cObDJpXm-y5C9Pyd6krTn/pub?output=csv';
+
+const resultEl = document.getElementById('result');
+const searchBtn = document.getElementById('searchBtn');
+const nidInput = document.getElementById('nid');
+
+let headers = [];
+let rows = [];
+let indexByHeader = {};
+let lookupByNid = Object.create(null);
+
+let sheetDataLoaded = false;
+let loadingPromise = null;
+
+
+// تنظيف النصوص
+function cleanCell(s) {
+  if (s === undefined || s === null) return '';
+  return String(s).trim();
+}
+
+
+// تحويل الأرقام العربية والفارسية إلى إنجليزية
+function normalizeNid(str) {
+
+  return String(str || '')
+
+    .replace(/[٠-٩]/g, d =>
+      '٠١٢٣٤٥٦٧٨٩'.indexOf(d)
+    )
+
+    .replace(/[۰-۹]/g, d =>
+      '۰۱۲۳۴۵۶۷۸۹'.indexOf(d)
+    )
+
+    .replace(/\s+/g, '')
+    .trim();
+
+}
+
+
+// توحيد أسماء الأعمدة
+function normalizeHeader(str) {
+
+  return String(str || '')
+
+    .replace(/[\u200E\u200F\u202A-\u202E]/g, '')
+    .replace(/[\u064B-\u065F\u0670]/g, '')
+    .replace(/\u0640/g, '')
+    .replace(/[أإآ]/g, 'ا')
+    .replace(/ى/g, 'ي')
+    .replace(/\s+/g, '')
+    .trim();
+
+}
+
+
+// حماية النصوص عند عرضها داخل HTML
+function escapeHTML(value) {
+
+  return String(value ?? '').replace(/[&<>"']/g, char => {
+
+    const entities = {
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#39;'
+    };
+
+    return entities[char];
+
+  });
+
+}
+
+
+// قراءة ملف CSV مع دعم الفواصل وعلامات الاقتباس
+function parseCSV(text) {
+
+  const records = [];
+
+  let row = [];
+  let field = '';
+  let inQuotes = false;
+
+  for (let i = 0; i < text.length; i++) {
+
+    const ch = text[i];
+
+    if (ch === '"') {
+
+      if (inQuotes && text[i + 1] === '"') {
+
+        field += '"';
+        i++;
+
+      } else {
+
+        inQuotes = !inQuotes;
+
+      }
+
+    } else if (ch === ',' && !inQuotes) {
+
+      row.push(field);
+      field = '';
+
+    } else if ((ch === '\n' || ch === '\r') && !inQuotes) {
+
+      if (ch === '\r' && text[i + 1] === '\n') {
+        i++;
+      }
+
+      row.push(field);
+
+      if (row.some(cell => cell.trim() !== '')) {
+        records.push(row);
+      }
+
+      row = [];
+      field = '';
+
+    } else {
+
+      field += ch;
+
+    }
+
+  }
+
+  row.push(field);
+
+  if (row.some(cell => cell.trim() !== '')) {
+    records.push(row);
+  }
+
+  return records.map(record => record.map(cleanCell));
+
+}
+
+
+// تحميل بيانات الشيت مرة واحدة فقط
+async function loadSheet() {
+
+  if (sheetDataLoaded) {
+    return true;
+  }
+
+  if (loadingPromise) {
+    return loadingPromise;
+  }
+
+  loadingPromise = (async () => {
+
+    try {
+
+      const resp = await fetch(SHEET_CSV);
+
+      if (!resp.ok) {
+        throw new Error('فشل في الاتصال ببيانات النتائج.');
+      }
+
+      const csvText = await resp.text();
+
+      const parsed = parseCSV(csvText);
+
+      if (parsed.length < 2) {
+        throw new Error('الشيت فارغ أو لا يحتوي على بيانات.');
+      }
+
+      headers = parsed[0].map(h =>
+        h.replace(/^\uFEFF/, '').trim()
+      );
+
+      rows = parsed.slice(1);
+
+      indexByHeader = {};
+
+      headers.forEach((h, i) => {
+        indexByHeader[normalizeHeader(h)] = i;
+      });
+
+      // تحديد عمود الرقم القومي
+      let nidIndex = indexByHeader[normalizeHeader('الرقم القومي')];
+
+      if (nidIndex === undefined) {
+        nidIndex = 0;
+      }
+
+      // إنشاء قاعدة البحث
+      lookupByNid = Object.create(null);
+
+      rows.forEach(r => {
+
+        const nid = normalizeNid(r[nidIndex]);
+
+        if (nid) {
+          lookupByNid[nid] = r;
+        }
+
+      });
+
+      sheetDataLoaded = true;
+
+      return true;
+
+    } catch (err) {
+
+      console.error(err);
+
+      resultEl.innerHTML =
+        `<div class="error">${escapeHTML(err.message)}</div>`;
+
+      return false;
+
+    } finally {
+
+      loadingPromise = null;
+
+    }
+
+  })();
+
+  return loadingPromise;
+
+}
+
+
+// عرض بيانات الطالب والنتيجة
+function showResultRow(row) {
+
+  if (!row) {
+
+    resultEl.innerHTML =
+      '<div class="error">لم يتم العثور على الطالب بالرقم المدخل.</div>';
+
+    return;
+
+  }
+
+  // بيانات الطالب الأساسية
+  const basicFields = [
+    'اسم الطالب',
+    'الرقم القومي',
+    'الصف الدراسي',
+    'الفصل',
+    'الامتحان'
+  ];
+
+  const basicHeaderKeys = basicFields.map(normalizeHeader);
+
+  let basicHtml = `
+    <h2 class="info-title">بيانات الطالب</h2>
+    <div class="info-grid">
+  `;
+
+  basicFields.forEach(h => {
+
+    const index = indexByHeader[normalizeHeader(h)];
+
+    if (index !== undefined) {
+
+      const value = row[index] || '';
+
+      let itemClass = '';
+
+      if (normalizeHeader(h) === normalizeHeader('اسم الطالب')) {
+        itemClass = 'name-item';
+      }
+
+      if (normalizeHeader(h) === normalizeHeader('الرقم القومي')) {
+        itemClass = 'nid-item';
+      }
+
+      basicHtml += `
+        <div class="info-item ${itemClass}">
+          <span class="info-label">${escapeHTML(h)}</span>
+          <span class="info-value">${escapeHTML(value)}</span>
+        </div>
+      `;
+
+    }
+
+  });
+
+  basicHtml += '</div>';
+
+
+  // جدول الدرجات
+  let tableHtml = `
+    <h2 class="grades-title">درجات المواد</h2>
+
+    <div class="table-wrapper">
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>المادة</th>
+            <th>درجة الطالب</th>
+          </tr>
+        </thead>
+
+        <tbody>
+  `;
+
+  headers.forEach((h, i) => {
+
+    // استبعاد بيانات الطالب من جدول الدرجات
+    if (!basicHeaderKeys.includes(normalizeHeader(h))) {
+
+      const grade = row[i] || '';
+
+      // التعرف تلقائياً على صف المجموع
+      const isTotal =
+        normalizeHeader(h).includes(normalizeHeader('المجموع'));
+
+      tableHtml += `
+        <tr class="${isTotal ? 'total-row' : ''}">
+
+          <td>${escapeHTML(h)}</td>
+
+          <td class="grade">${escapeHTML(grade)}</td>
+
+        </tr>
+      `;
+
+    }
+
+  });
+
+  tableHtml += `
+        </tbody>
+
+      </table>
+
+    </div>
+  `;
+
+  resultEl.innerHTML = basicHtml + tableHtml;
+
+}
+
+
+// تنفيذ البحث
+searchBtn.addEventListener('click', async () => {
+
+  const nid = normalizeNid(nidInput.value);
+
+  if (!nid) {
+
+    resultEl.innerHTML =
+      '<div class="error">من فضلك أدخل الرقم القومي للطالب.</div>';
+
+    nidInput.focus();
+
+    return;
+
+  }
+
+  searchBtn.disabled = true;
+  searchBtn.textContent = 'جاري البحث...';
+
+  resultEl.innerHTML =
+    '<div class="loading">جاري تحميل بيانات النتيجة...</div>';
+
+  try {
+
+    const loaded = await loadSheet();
+
+    if (!loaded) {
+      return;
+    }
+
+    const row = lookupByNid[nid];
+
+    showResultRow(row);
+
+  } finally {
+
+    searchBtn.disabled = false;
+    searchBtn.textContent = 'عرض النتيجة';
+
+  }
+
+});
+
+
+// البحث عند الضغط على Enter
+nidInput.addEventListener('keydown', (e) => {
+
+  if (e.key === 'Enter') {
+    searchBtn.click();
+  }
+
+});
+
+
+// تحميل البيانات عند فتح الموقع
+loadSheet();
+
+</script>
+
+</body>
+</html>
